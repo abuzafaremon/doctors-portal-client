@@ -1,0 +1,9 @@
+.banner {
+  background: url(../../../assets/images/chair.png) no-repeat center center;
+  background-size: cover;
+}
+
+.banner .overlay {
+  background-color: #fff;
+  opacity: .9;
+}
