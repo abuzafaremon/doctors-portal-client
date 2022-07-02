@@ -13,9 +13,9 @@ const Services = () => {
   ]
   return (
     <section className='p-2 sm:p-5 md:p-10'>
-      <h3 className='uppercase text-primary text-center font-bold'>Our Services</h3>
-      <h2 className='text-2xl text-center'>Service We Provide</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <h3 className='uppercase text-primary text-center text-lg font-bold'>Our Services</h3>
+      <h2 className='text-4xl text-center'>Service We Provide</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
         {
           services.map(service => <ServicesCard key={service._id} service={service}></ServicesCard>)
         }
