@@ -4,7 +4,7 @@ import './Contact.css'
 
 const Contact = () => {
   return (
-    <section className='contact p-2 sm:p-5 md:p-10 py-10'>
+    <section id='contact' className='contact p-2 sm:p-5 md:p-10 py-10'>
       <h3 className="text-primary text-lg font-bold text-center">Contact Us</h3>
       <h1 className="text-2xl sm:text-3xl md:text-4xl text-white text-center">Stay connected with us</h1>
       <div className="flex justify-center">

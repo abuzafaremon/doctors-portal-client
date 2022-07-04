@@ -1,17 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link';
 
 const Header = () => {
   const menuItems = <>
-    <li><Link to='/'>Home</Link></li>
+    <li><HashLink to='/home#top'>Home</HashLink></li>
     <li><Link to='/about'>About</Link></li>
-    <li><Link to='#appointment'>Appointment</Link></li>
-    <li><Link to='#reviews'>Reviews</Link></li>
-    <li><Link to='#contact'>Contact Us</Link></li>
+    <li>
+      <HashLink
+        to="/home/#appointment"
+      // etc...
+      >Appointment</HashLink>
+    </li>
+    <li>
+      <HashLink
+        to="/home/#reviews"
+      // etc...
+      >Reviews</HashLink>
+    </li>
+    <li>
+      <HashLink
+        to="/home/#contact"
+      // etc...
+      >Contact Us</HashLink>
+    </li>
     <li><Link to='/login'>Login</Link></li>
   </>
   return (
-    <header className="navbar sm:px-5 md:px-10 bg-base-100 flex justify-between items-center">
+    <header className="navbar sm:px-5 md:px-10 bg-base-100 flex justify-between items-center z-50 fixed border-b border-primary max-w-7xl">
       <div className="">
         <div className="dropdown pr-1 md:pr-0">
           <label tabIndex="0" className="lg:hidden cursor-pointer">

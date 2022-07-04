@@ -5,7 +5,7 @@ import './Hero.css'
 
 const Hero = () => {
   return (
-    <section className='banner'>
+    <section id='home' className='banner'>
       <div className="overlay p-2 sm:p-5 md:p-10 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
           <div className='order-2 lg:order-1'>
