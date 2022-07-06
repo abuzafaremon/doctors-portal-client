@@ -1,9 +1,10 @@
 import React from 'react';
+import Loading from '../../Components/Loading/Loading';
 
 const About = () => {
   return (
     <div>
-      About page
+      <Loading />
     </div>
   );
 };

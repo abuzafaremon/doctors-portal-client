@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
+  const [user] = useAuthState(auth);
+  const logout = () => {
+    signOut(auth);
+  }
   const menuItems = <>
     <li><HashLink to='/home#top'>Home</HashLink></li>
     <li><Link to='/about'>About</Link></li>
@@ -24,7 +31,6 @@ const Header = () => {
       // etc...
       >Contact Us</HashLink>
     </li>
-    <li><Link to='/login'>Login</Link></li>
   </>
   return (
     <header className="navbar sm:px-5 md:px-10 bg-base-100 flex justify-between items-center z-50 fixed border-b border-primary max-w-7xl">
@@ -42,23 +48,16 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
           {menuItems}
-          {/* <li tabIndex="0">
-              <a>
-                Profile
-                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-              </a>
-              <ul className="p-2">
-                <li><a>Me</a></li>
-                <li><a>Logout</a></li>
-              </ul>
-            </li> */}
         </ul>
       </div>
-      <div className="dropdown dropdown-end">
+      {user ? <div className="dropdown dropdown-end">
+
         <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="https://placeimg.com/80/80/people" />
-          </div>
+          {user?.photoURL ?
+            <div className="w-10 rounded-full border border-primary">
+              <img src={user?.photoURL && user?.photoURL} alt={user?.displayName ? user.displayName.split(' ')[0] : 'Profile'} />
+            </div> :
+            <span className='uppercase'>{user?.displayName ? user?.displayName.split(' ')[0] : 'Reload'}</span>}
         </label>
         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           <li>
@@ -67,9 +66,13 @@ const Header = () => {
             </Link>
           </li>
           <li><Link to=''>Settings</Link></li>
-          <li><Link to=''>Logout</Link></li>
+          <li><Link onClick={logout} to=''>Logout</Link></li>
         </ul>
-      </div>
+      </div> :
+        <div className='btn-group btn-group-vertical'>
+          <Link className='btn btn-sm btn-block' to='/login'>Login</Link>
+          <Link className='btn btn-sm btn-block' to='/register'>Register</Link>
+        </div>}
     </header>
   );
 };

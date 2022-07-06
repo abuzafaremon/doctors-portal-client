@@ -13,7 +13,7 @@ const AppointmentBanner = ({ date, setDate }) => {
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
       }}
-      className='p-2 sm:p-5 md:p-10'>
+      className='p-2 sm:p-5 md:p-10 py-10'>
 
       <div className="flex flex-col-reverse md:flex-row justify-center gap-10 items-center">
         <div className="bg-white shadow rounded-md">
