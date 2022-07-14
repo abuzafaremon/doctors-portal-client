@@ -43,7 +43,7 @@ const Header = () => {
             {menuItems}
           </ul>
         </div>
-        <Link to='/' className="normal-case text-2xl sm:text-3xl">Doctor's Portal</Link>
+        <Link to='/' className="normal-case text-2xl sm:text-3xl"><span className='text-primary'>D</span>octor's <span className='text-secondary'>P</span>ortal</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
@@ -55,9 +55,9 @@ const Header = () => {
         <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
           {user?.photoURL ?
             <div className="w-10 rounded-full border border-primary">
-              <img src={user?.photoURL && user?.photoURL} alt={user?.displayName ? user.displayName.split(' ')[0] : 'Profile'} />
+              <img src={user?.photoURL && user.photoURL} alt={user?.displayName ? user.displayName.split(' ')[0] : 'Profile'} />
             </div> :
-            <span className='uppercase'>{user?.displayName ? user?.displayName.split(' ')[0] : 'Reload'}</span>}
+            <span className='uppercase'>{user?.displayName ? user.displayName.split(' ')[0] : 'Reload'}</span>}
         </label>
         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           <li>

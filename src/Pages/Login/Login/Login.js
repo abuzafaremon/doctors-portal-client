@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import bg from '../../../assets/images/appointment.png';
 import { FcGoogle } from 'react-icons/fc';
 import Loading from '../../../Components/Loading/Loading';
+import { useLocation } from 'react-router-dom';
 
 const Login = () => {
   const [
@@ -19,15 +20,19 @@ const Login = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || '/';
 
   const onSubmit = data => {
     signInWithEmailAndPassword(data.email, data.password);
     reset();
   }
 
-  if (user || gUser) {
-    navigate('/');
-  }
+  useEffect(() => {
+    if (user || gUser) {
+      navigate(from, { replace: true });
+    }
+  }, [user, gUser, from, navigate])
   if (loading || gLoading) {
     return <Loading />
   }

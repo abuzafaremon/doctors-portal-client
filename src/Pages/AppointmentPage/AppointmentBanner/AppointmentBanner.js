@@ -24,7 +24,7 @@ const AppointmentBanner = ({ date, setDate }) => {
           />
         </div>
         <div>
-          <img className="max-w-lg rounded-lg hover:shadow-lg" src={chair} alt="" />
+          <img className="max-w-full rounded-lg hover:shadow-lg" src={chair} alt="" />
         </div>
       </div>
     </section>
