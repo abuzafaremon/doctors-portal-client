@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { useForm } from "react-hook-form";
@@ -7,6 +7,8 @@ import bg from '../../../assets/images/appointment.png';
 import { FcGoogle } from 'react-icons/fc';
 import Loading from '../../../Components/Loading/Loading';
 import { useLocation } from 'react-router-dom';
+import swal from 'sweetalert';
+import { useRef } from 'react';
 
 const Login = () => {
   const [
@@ -18,13 +20,17 @@ const Login = () => {
 
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
+  const emailRef = useRef();
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || '/';
 
   const onSubmit = data => {
-    signInWithEmailAndPassword(data.email, data.password);
+    const email = emailRef.current.value;
+    signInWithEmailAndPassword(email, data.password);
     reset();
   }
 
@@ -32,16 +38,27 @@ const Login = () => {
     if (user || gUser) {
       navigate(from, { replace: true });
     }
-  }, [user, gUser, from, navigate])
-  if (loading || gLoading) {
+  }, [user, gUser, from, navigate]);
+
+  if (loading || gLoading || sending) {
     return <Loading />
   }
+
   let errorElement;
   if (error || gError) {
     errorElement = <p className='text-red-500'>{error?.message || gError?.message}</p>
   }
-  const forgotPassword = () => {
 
+
+  const forgotPassword = async () => {
+    const email = emailRef.current.value;
+    if (email) {
+      await sendPasswordResetEmail(email);
+      swal('Email Sent', "Check Your Email Inbox or Spam Folder", "success")
+    }
+    else {
+      swal('Enter Your Email', "", "warning")
+    }
   }
   return (
     <section className='p-2 sm:p-5 md:p-10 py-10'
@@ -54,12 +71,12 @@ const Login = () => {
       <div className="card flex-shrink-0 w-full max-w-sm mx-auto shadow-2xl">
         <div className="card-body">
           <h3 className="text-primary font-bold text-lg text-center border-b-2 border-t-2 border-primary rounded-lg">Login</h3>
-          <form onSubmit={handleSubmit(onSubmit)} className=''>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">
               <label htmlFor="" className="label">
                 <span className="label-text text-white">Email</span>
               </label>
-              <input placeholder='Email' className='input input-bordered' {...register("email", { required: true })} />
+              <input placeholder='Email' className='input input-bordered' type="email" required autoComplete='on' ref={emailRef} />
             </div>
             <div className="form-control">
               <label htmlFor="" className="label">
