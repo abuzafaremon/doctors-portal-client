@@ -4,6 +4,9 @@ import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 import About from './Pages/About/About';
 import AppointmentPage from './Pages/AppointmentPage/AppointmentPage';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import MyAppointments from './Pages/Dashboard/MyAppointments';
+import MyReviews from './Pages/Dashboard/MyReviews';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
@@ -28,6 +31,14 @@ function App() {
             <AppointmentPage />
           </RequireAuth>
         }></Route>
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }>
+          <Route path='appointments' element={<MyAppointments />}></Route>
+          <Route path='reviews' element={<MyReviews />}></Route>
+        </Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='*' element={<NotFound />}></Route>
