@@ -9,6 +9,7 @@ const Header = () => {
   const [user] = useAuthState(auth);
   const logout = () => {
     signOut(auth);
+    localStorage.removeItem('accessToken');
   }
   const menuItems = <>
     <li><HashLink to='/home#top'>Home</HashLink></li>

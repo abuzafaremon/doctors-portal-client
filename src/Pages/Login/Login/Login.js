@@ -9,6 +9,7 @@ import Loading from '../../../Components/Loading/Loading';
 import { useLocation } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useRef } from 'react';
+import useToken from '../../../hooks/useToken';
 
 const Login = () => {
   const [
@@ -21,6 +22,8 @@ const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
+  const [token] = useToken(user || gUser);
 
   const emailRef = useRef();
   const { register, handleSubmit, reset } = useForm();
@@ -35,10 +38,10 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if (user || gUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, gUser, from, navigate]);
+  }, [token, from, navigate]);
 
   if (loading || gLoading || sending) {
     return <Loading />

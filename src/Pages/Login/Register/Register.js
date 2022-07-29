@@ -6,6 +6,7 @@ import bg from '../../../assets/images/appointment.png';
 import auth from '../../../firebase.init';
 import { FcGoogle } from 'react-icons/fc';
 import Loading from '../../../Components/Loading/Loading';
+import useToken from '../../../hooks/useToken';
 
 const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -17,6 +18,8 @@ const Register = () => {
   ] = useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
+
+  const [token] = useToken(user || gUser);
   const navigate = useNavigate();
 
   const onSubmit = async data => {
@@ -24,7 +27,7 @@ const Register = () => {
     await updateProfile({ displayName: data.name });
     reset();
   };
-  if (user || gUser) {
+  if (token) {
     navigate('/');
   }
   if (loading || gLoading || updating) {

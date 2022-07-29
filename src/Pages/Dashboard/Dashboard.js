@@ -1,8 +1,13 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
 
 const Dashboard = () => {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   return (
     <section className='px-2 sm:px-5 md:px-10 py-2'>
       <label htmlFor="dashboard-menu" className="btn btn-primary drawer-button lg:hidden"><span className='mt-[-5px]' style={{ 'fontSize': '30px' }}>&#8667;</span></label>
@@ -19,6 +24,8 @@ const Dashboard = () => {
             <li><Link to=''>Profile</Link></li>
             <li><Link to='/dashboard/appointments'>Appointments</Link></li>
             <li><Link to='/dashboard/reviews'>Reviews</Link></li>
+            <li><Link to='/dashboard/history'>History</Link></li>
+            {admin && <li><Link to='/dashboard/users'>Users</Link></li>}
           </ul>
 
         </div>
