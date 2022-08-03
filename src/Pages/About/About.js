@@ -4,7 +4,7 @@ import Loading from '../../Components/Loading/Loading';
 const About = () => {
   return (
     <div>
-      <Loading />
+      <h2 className='text-2xl text-center'>About Doctors Portal</h2>
     </div>
   );
 };

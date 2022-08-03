@@ -8,7 +8,7 @@ import ServiceCard from './ServiceCard';
 const AvailableService = ({ date }) => {
   const [treatment, setTreatment] = useState({});
   const formattedDate = format(date, 'PP');
-  const { data: services, isLoading, refetch } = useQuery(['available', formattedDate], () => fetch(`http://localhost:5000/available?date=${formattedDate}`)
+  const { data: services, isLoading, refetch } = useQuery(['available', formattedDate], () => fetch(`https://dr-portal-server.herokuapp.com/available?date=${formattedDate}`)
     .then(res => res.json())
   )
   if (isLoading) {
