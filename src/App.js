@@ -17,6 +17,8 @@ import NotFound from './Pages/NotFound/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAdmin from './Pages/Login/RequireAuth/RequireAdmin';
+import AddDoctor from './Pages/Dashboard/AddDoctor';
+import ManageDoctors from './Pages/Dashboard/ManageDoctors';
 
 function App() {
   return (
@@ -50,6 +52,16 @@ function App() {
           <Route path='users' element={
             <RequireAdmin>
               <Users />
+            </RequireAdmin>
+          }></Route>
+          <Route path='addDoctor' element={
+            <RequireAdmin>
+              <AddDoctor />
+            </RequireAdmin>
+          }></Route>
+          <Route path='manageDoctors' element={
+            <RequireAdmin>
+              <ManageDoctors />
             </RequireAdmin>
           }></Route>
         </Route>

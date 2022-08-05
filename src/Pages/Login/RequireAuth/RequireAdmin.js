@@ -9,7 +9,6 @@ import useAdmin from '../../../hooks/useAdmin';
 const RequireAdmin = ({ children }) => {
   const [user, loading] = useAuthState(auth);
   const [admin, adminLoading] = useAdmin(user);
-
   if (loading || adminLoading) {
     return <Loading />
   }
@@ -19,7 +18,6 @@ const RequireAdmin = ({ children }) => {
     signOut(auth);
     return <Navigate to='/dashboard'></Navigate>
   }
-
   return children;
 };
 
