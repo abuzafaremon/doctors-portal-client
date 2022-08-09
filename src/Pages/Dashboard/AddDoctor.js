@@ -3,11 +3,22 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../Components/Loading/Loading';
 import { toast } from 'react-toastify';
+import { signOut } from 'firebase/auth';
+import auth from '../../firebase.init';
+import { useNavigate } from 'react-router-dom';
 
 const AddDoctor = () => {
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
   const { data: services, isLoading } = useQuery(['services'], () => fetch(`http://localhost:5000/services`)
-    .then(res => res.json())
+    .then(res => {
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('accessToken');
+        signOut(auth);
+        navigate('/dashboard');
+      }
+      return res.json()
+    })
   )
 
   const imageStorageKey = '0c32b85e7c7f5f33e690cbfdd6ab56ab';

@@ -34,7 +34,7 @@ const MyAppointments = () => {
   }, [user])
   return (
     <div>
-      <h2 className='text-2xl mb-5'>My Appointments: {appointments.length}</h2>
+      <h2 className='text-2xl mb-5 font-bold'>My Appointments</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>

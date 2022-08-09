@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import RequireAdmin from './Pages/Login/RequireAuth/RequireAdmin';
 import AddDoctor from './Pages/Dashboard/AddDoctor';
 import ManageDoctors from './Pages/Dashboard/ManageDoctors';
+import MyProfile from './Pages/Dashboard/MyProfile';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
             <Dashboard />
           </RequireAuth>
         }>
+          <Route path='profile' element={<MyProfile />}></Route>
           <Route path='appointments' element={<MyAppointments />}></Route>
           <Route path='reviews' element={<MyReviews />}></Route>
           <Route path='history' element={<MyHistory />}></Route>

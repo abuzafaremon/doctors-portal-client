@@ -15,10 +15,10 @@ const Header = () => {
     <li><HashLink to='/home#top'>Home</HashLink></li>
     <li><Link to='/about'>About</Link></li>
     <li>
-      <HashLink
-        to="/home/#appointment"
+      <Link
+        to="/appointment"
       // etc...
-      >Appointment</HashLink>
+      >Appointment</Link>
     </li>
     <li>
       <HashLink
@@ -62,7 +62,7 @@ const Header = () => {
         </label>
         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           <li>
-            <Link to='/dashboard' className="justify-between">
+            <Link to='/dashboard/profile' className="justify-between">
               Dashboard
             </Link>
           </li>
