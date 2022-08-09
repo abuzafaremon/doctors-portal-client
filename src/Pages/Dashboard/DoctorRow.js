@@ -14,7 +14,7 @@ const DoctorRow = ({ doctor, index, refetch }) => {
     })
       .then((willDelete) => {
         if (willDelete) {
-          fetch(`http://localhost:5000/doctor/${email}`, {
+          fetch(`https://dr-portal-server.herokuapp.com/doctor/${email}`, {
             method: 'DELETE',
             headers: {
               authorization: `Bearer ${localStorage.getItem('accessToken')}`

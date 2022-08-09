@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const AddDoctor = () => {
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
-  const { data: services, isLoading } = useQuery(['services'], () => fetch(`http://localhost:5000/services`)
+  const { data: services, isLoading } = useQuery(['services'], () => fetch(`https://dr-portal-server.herokuapp.com/services`)
     .then(res => {
       if (res.status === 401 || res.status === 403) {
         localStorage.removeItem('accessToken');
@@ -47,7 +47,7 @@ const AddDoctor = () => {
             img: img
           }
           // send to data base
-          fetch('http://localhost:5000/doctor', {
+          fetch('https://dr-portal-server.herokuapp.com/doctor', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
