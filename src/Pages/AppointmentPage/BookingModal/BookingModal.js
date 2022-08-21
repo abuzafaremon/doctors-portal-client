@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 
 const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
   const [user] = useAuthState(auth);
-  const { _id, name, slots } = treatment;
+  const { _id, name, slots, price } = treatment;
   const formattedDate = format(date, 'PP');
   const handleBooking = event => {
     event.preventDefault();
@@ -17,6 +17,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       treatment: name,
       date: formattedDate,
       slot,
+      price,
       patient: user.email,
       patientName: user.displayName,
       phone: event.target.phone.value
@@ -62,6 +63,9 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
             </div>
             <div className="form-control">
               <input type="email" name='email' value={user?.email} disabled className="input input-bordered" />
+            </div>
+            <div className="form-control">
+              <input type="number" name='price' value={price} disabled className="input input-bordered" />
             </div>
             <div className="form-control">
               <input type="text" name='phone' placeholder="Phone Number" className="input input-bordered" />
