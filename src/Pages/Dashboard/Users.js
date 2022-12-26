@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Users = () => {
   const navigate = useNavigate();
-  const { data: users, isLoading, refetch } = useQuery(['users'], () => fetch('https://doctors-portal-server-production-9169.up.railway.app//users', {
+  const { data: users, isLoading, refetch } = useQuery(['users'], () => fetch('https://doctors-portal-server-production-9169.up.railway.app/users', {
     method: 'GET',
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`

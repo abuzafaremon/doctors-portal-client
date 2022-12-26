@@ -14,7 +14,7 @@ const DoctorRow = ({ doctor, index, refetch }) => {
     })
       .then((willDelete) => {
         if (willDelete) {
-          fetch(`https://doctors-portal-server-production-9169.up.railway.app//doctor/${email}`, {
+          fetch(`https://doctors-portal-server-production-9169.up.railway.app/doctor/${email}`, {
             method: 'DELETE',
             headers: {
               authorization: `Bearer ${localStorage.getItem('accessToken')}`

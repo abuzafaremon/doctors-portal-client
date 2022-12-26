@@ -23,7 +23,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       phone: event.target.phone.value
     }
 
-    fetch('https://doctors-portal-server-production-9169.up.railway.app//booking', {
+    fetch('https://doctors-portal-server-production-9169.up.railway.app/booking', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
