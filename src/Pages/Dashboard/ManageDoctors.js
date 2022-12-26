@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ManageDoctors = () => {
   const navigate = useNavigate();
-  const { data: doctors, isLoading, refetch } = useQuery(['doctors'], () => fetch('https://dr-portal-server.herokuapp.com/doctors', {
+  const { data: doctors, isLoading, refetch } = useQuery(['doctors'], () => fetch('https://doctors-portal-server-production-9169.up.railway.app//doctors', {
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`
     }
