@@ -13,7 +13,7 @@ const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   useEffect(() => {
     if (user) {
-      fetch(`https://doctors-portal-server-production-9169.up.railway.app/booking?patient=${user?.email}`, {
+      fetch(`https://doctors-portal-server-zafaremon20.vercel.app/booking?patient=${user?.email}`, {
         method: 'GET',
         headers: {
           'authorization': `Bearer ${localStorage.getItem('accessToken')}`

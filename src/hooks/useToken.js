@@ -7,7 +7,7 @@ const useToken = user => {
     const email = user?.user?.email;
     const currentUser = { email: email };
     if (email) {
-      fetch(`https://doctors-portal-server-production-9169.up.railway.app/user/${email}`, {
+      fetch(`https://doctors-portal-server-zafaremon20.vercel.app/user/${email}`, {
         method: 'PUT',
         headers: {
           'content-type': 'application/json'
